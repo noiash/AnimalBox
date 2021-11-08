@@ -1,0 +1,15 @@
+<h1>投稿一覧</h1>
+<% @posts.each do |post| %>
+<div>
+  <% if post.image_id.present? %>
+    <%= image_tag post.image_id.url %>
+  <% else %>
+    <%= video_tag(post.video_id.to_s, :controls => true) %>
+  <% end %>
+  <p><%= post.title %></p>
+  <p><%= post.introduction %></p>
+  <% post.tag_maps.each do |tag_map| %>
+    <p><%= tag_map.tag.tag_name %></p>
+  <% end %>
+</div>
+<% end %>
