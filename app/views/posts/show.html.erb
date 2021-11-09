@@ -1,0 +1,22 @@
+<div>
+  <% if @post.image_id.present? %>
+    <%= image_tag @post.image_id.url, :size => '320x240' %>
+  <% else %>
+    <%= video_tag(@post.video_id.to_s, :controls => true, :size => '320x240') %>
+  <% end %>
+
+  <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <p><%= @post.user.name %></p>
+  <p><%= @post.title %></p>
+  <p><%= @post.introduction %></p>
+  <p><%= sanitize(@post.tags.pluck(:tag_name).join(' ')) %>
+
+  <%# @post.tag_maps.each do |tag_map| %>
+    <%#= tag_map.tag.tag_name %>
+  <%# end %>
+
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+    <%= link_to "編集", edit_post_path(@post) %>
+  <% end %>
+</div>

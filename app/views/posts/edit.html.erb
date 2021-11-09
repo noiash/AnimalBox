@@ -1,0 +1,17 @@
+<%= form_with model: @post, url: post_path, local: true do |f| %>
+  <h4>画像/動画</h4>
+  <%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %><%= f.file_field :video_id, :accept => 'video/*'%>
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  <h4>本文</h4>
+  <%= f.text_area :introduction %>
+  <h4>タグ</h4>
+  <%# tags = "" %>
+  <%# @post.tags.each do |tag|%>
+  <%#   tags += tag.tag_name + " " %>
+  <%# end %>
+  <%#= f.text_field :tag_name, value: tags %>
+  <%= f.text_field :tag_name, value: @post.tags.pluck(:tag_name).join(' ') %>
+
+  <%= f.submit '変更を保存' %>
+<% end %>

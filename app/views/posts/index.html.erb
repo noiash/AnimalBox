@@ -1,15 +1,21 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
 <div>
+<%= link_to post_path(post.id) do %>
   <% if post.image_id.present? %>
-    <%= image_tag post.image_id.url %>
+    <%= image_tag post.image_id.url, :size => '320x240' %>
   <% else %>
-    <%= video_tag(post.video_id.to_s, :controls => true) %>
+    <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
   <% end %>
+<% end %>
+  <p><%= post.created_at %></p>
   <p><%= post.title %></p>
   <p><%= post.introduction %></p>
-  <% post.tag_maps.each do |tag_map| %>
-    <p><%= tag_map.tag.tag_name %></p>
-  <% end %>
+  <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+
+  <%# post.tags.each do |tag| %>
+    <%#= tag.tag_name %>
+  <%# end %>
+  </p>
 </div>
 <% end %>
