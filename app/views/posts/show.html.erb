@@ -19,4 +19,41 @@
     <%= link_to "削除", post_path(@post), method: :delete %>
     <%= link_to "編集", edit_post_path(@post) %>
   <% end %>
+
+  <div>
+    <p>コメント件数：<%= @post.comments.count %></p>
+      <% @post.comments.each do |comment| %>
+        <p><%= image_tag comment.user.profile_image.url, :size => '50x50' %></p>
+        <%= comment.user.name %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+        <% if comment.user == current_user %>
+          <div>
+            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+
+  <div>
+    <%= form_with(model:[@post, @comment], local: true) do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+
+  <% if @post.favorited_by?(current_user) %>
+
+    <p>
+      <%= link_to post_likes_path(@post), method: :delete do %>
+        ♥<%= @post.likes.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_likes_path(@post), method: :post do %>
+        ♡<%= @post.likes.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+
 </div>

@@ -1,0 +1,11 @@
+<div>
+  <%= image_tag @pet.profile_image.url, :size => '320x240' %>
+  <%= @pet.name %>
+  <%= @pet.sex %>
+  <%= @pet.age %>
+  <%= @pet.type %>
+  <% if @pet.user == current_user %>
+    <%= link_to "削除する", pet_path(@pet), method: :delete %>
+    <%= link_to "編集する", edit_pet_path(@pet.id) %>
+  <% end %>
+</div>

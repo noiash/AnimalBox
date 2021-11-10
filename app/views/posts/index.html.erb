@@ -17,5 +17,6 @@
     <%#= tag.tag_name %>
   <%# end %>
   </p>
+  <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
 </div>
 <% end %>

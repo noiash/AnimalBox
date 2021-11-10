@@ -9,7 +9,9 @@
   <% end %>
 
 <% @pets.each do |pet| %>
-  <%= image_tag pet.profile_image.url, :size => '50x50'%>
+  <%= link_to pet_path(pet.id) do %>
+    <%= image_tag pet.profile_image.url, :size => '32x24'%>
+  <% end %>
   <%= pet.name %>
 <% end %>
 </div>

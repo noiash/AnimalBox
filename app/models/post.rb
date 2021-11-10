@@ -3,6 +3,13 @@ class Post < ApplicationRecord
 
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+
+  def favorited_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 
   mount_uploader :image_id, ImageUploader
   mount_uploader :video_id, VideoUploader
