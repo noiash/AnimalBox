@@ -1,0 +1,37 @@
+<h1><%= @user.name %>さんのページ</h1>
+
+<div>
+  <%= image_tag @user.profile_image.url, :size => '100x100' %>
+  <%= @user.introduction %>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <p><%= link_to "ペット登録", new_pet_path(@user) %></p>
+  <% end %>
+
+<% @pets.each do |pet| %>
+  <%= image_tag pet.profile_image.url, :size => '50x50'%>
+  <%= pet.name %>
+<% end %>
+</div>
+
+<% @posts.each do |post| %>
+<div>
+<%= link_to post_path(post.id) do %>
+  <% if post.image_id.present? %>
+    <%= image_tag post.image_id.url, :size => '320x240' %>
+  <% else %>
+    <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
+  <% end %>
+<% end %>
+  <p><%= post.created_at %></p>
+  <p><%= post.title %></p>
+  <p><%= post.introduction %></p>
+  <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+
+  <%# post.tags.each do |tag| %>
+    <%#= tag.tag_name %>
+  <%# end %>
+  </p>
+</div>
+<% end %>
+<%= paginate @posts %>

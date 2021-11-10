@@ -1,0 +1,11 @@
+<% @pets.each do |pet| %>
+  <div>
+    <%= image_tag pet.profile_image.url, :size => '320x240' %>
+    <%= image_tag pet.user.profile_image.url, :size => '50x50' %>
+    <%= pet.user.name %>
+    <%= pet.name %>
+    <%= pet.sex %>
+    <%= pet.age %>
+    <%= pet.type %>
+  </div>
+<% end %>

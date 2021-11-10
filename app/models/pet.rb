@@ -5,4 +5,6 @@ class Pet < ApplicationRecord
 
   mount_uploader :profile_image, ImageUploader
 
+  self.inheritance_column = :_type_disabled
+
 end

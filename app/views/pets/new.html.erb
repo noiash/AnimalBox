@@ -1,0 +1,35 @@
+<h1>ペット登録</h1>
+<%= form_with model: @pet, local: true do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_image %><br />
+    <%= f.file_field :profile_image, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.label :man %>
+    <%= f.radio_button :sex, :man %>
+    <%= f.label :woman %>
+    <%= f.radio_button :sex, :woman %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.text_field :age, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録する" %>
+  </div>
+
+<% end %>
