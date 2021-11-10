@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new
   end
 
+
   def new
     @post = Post.new
   end
@@ -34,6 +35,8 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
+    tag_list = params[:post][:tag_name].split(nil)
+    @post.save_tag(tag_list)
     redirect_to post_path(@post)
   end
 
