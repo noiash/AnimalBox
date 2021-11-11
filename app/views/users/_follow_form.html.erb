@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+<% unless @user == current_user %>
+  <% if current_user.following?(@user) %>
+    <%= button_to "フォロー中", user_relationships_path, method: :delete, class: "following-btn" %>
+  <% else %>
+    <%= form_for(@user.followers.build) do |f| %>
+      <%= hidden_field_tag :follower_id, @user.id %>
+      <%= f.submit "フォロー", class: "follow-btn" %>
+    <% end %>
+  <% end %>
+<% end %>
+<% end %>

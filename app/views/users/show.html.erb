@@ -1,5 +1,11 @@
 <h1><%= @user.name %>さんのページ</h1>
 
+<div class="follow">
+  <%= render "follow_form" %>
+  <p class="follow-count">
+    <%= link_to "#{@user.followers.count} #{User.human_attribute_name("フォロー")}", followings_user_path %> <%= link_to "#{@user.followings.count} #{User.human_attribute_name("フォロワー")}", followers_user_path %>
+  </p>
+</div>
 <div>
   <%= image_tag @user.profile_image.url, :size => '100x100' %>
   <%= @user.introduction %>
@@ -36,4 +42,5 @@
   </p>
 </div>
 <% end %>
+
 <%= paginate @posts %>
