@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @comment = Comment.new
+    @comments = @post.comments
   end
 
   def create
