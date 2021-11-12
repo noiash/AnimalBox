@@ -1,6 +1,7 @@
 <h2>フォローしている方々</h2>
   <% @users.each do |user| %>
     <%= link_to user_path(user.id) do %>
+      <%= image_tag user.profile_image.url, :size => '100x100'%></br>
       <%= user.name %>
     <% end %>
   <% end %>
