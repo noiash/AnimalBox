@@ -1,31 +1,6 @@
-<div class='main'>
-  <div class="follower-list">
-    <h1>フォロワー</h1>
-  </div>
-  <div class="item-contents">
-    <h2 class="title">Pick Up</h2>
-    <div class="subtitle">
-      user list
-    </div>
-
-    <ul class="item-lists">
-      <% @followers.each do |user| %>
-      <div class="comment-profile">
-        <div class="profile">
-          <% if user.profile_image.attached? %>
-            <%= image_tag user.profile_image.url, :size => '50x50', class: "user-icon3" %>
-          <% else %>
-            <%= image_tag "person.jpg", alt: "user-icon", class: "user-icon3" %>
-          <% end %>
-        </div>
-        <div class="name-file">
-          <%= link_to user.name, user_path(user.id), class: "message-nickname" %>
-        </div>
-      </div>
-      <% end %>
-    </ul>
-
-    <%= link_to t("button.back"), user_path %>
-
-  </div>
-</div>
+<h2>フォロワー</h2>
+  <% @users.each do |user| %>
+    <%= link_to user_path(user.id) do %>
+      <%= user.name %>
+    <% end %>
+  <% end %>

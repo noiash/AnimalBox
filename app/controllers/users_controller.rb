@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, except: [:index]
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).reverse_order
     @pets = @user.pets.page(params[:page]).reverse_order
+    @relationship = current_user.relationships.find_by(follow_id: @user.id)
+    @set_relationship = current_user.relationships.new
   end
 
   def edit
@@ -18,17 +19,15 @@ class UsersController < ApplicationController
   end
 
   def followings
-    @followings = @user.following_users
+    @user = User.find(params[:id])
+    @users = @user.followings.all
   end
 
   def followers
-    @followers = @user.follower_users
-  end
-
-
-  def set_user
     @user = User.find(params[:id])
+    @users = @user.followers.all
   end
+
 
   private
 

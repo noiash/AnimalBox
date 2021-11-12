@@ -4,13 +4,9 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about'
   resources :users, only:[:show, :edit, :update] do
-    member do
-      get :followings, :followers
-    end
-    resource :relationships, only: [:create, :destroy]
+    get :followings, on: :member
+    get :followers, on: :member
   end
-
-
 
   resources :pets, only:[:new, :create, :index, :show, :update, :edit, :destroy]
   resources :posts, only:[:new, :create, :index, :show, :update, :edit, :destroy] do
@@ -23,5 +19,7 @@ Rails.application.routes.draw do
   resources :tags do
     get 'posts', to: 'posts#search'
   end
+
+  resources :relationships, only: [:create, :destroy]
 
 end
