@@ -4,19 +4,13 @@ class RelationshipsController < ApplicationController
   def create
     following = current_user.follow(@user)
     following.save
-      respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
-    end
+    @relationship = current_user.relationships.find_by(follow_id: @user.id)
   end
 
   def destroy
     following = current_user.unfollow(@user)
     following.destroy
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
-    end
+    @set_relationship = current_user.relationships.new
   end
 
   private

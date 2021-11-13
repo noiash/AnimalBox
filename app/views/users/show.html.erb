@@ -4,8 +4,6 @@
   <%= render 'relationships/follow_button', user: @user %>
 </div>
 
-  <%= link_to "フォロー： #{@user.followings.count}", followings_user_path(@user.id) %>
-  <%= link_to "フォロワー： #{@user.followers.count}", followers_user_path(@user.id) %>
 <div>
   <%= image_tag @user.profile_image.url, :size => '100x100' %>
   <%= @user.introduction %>
