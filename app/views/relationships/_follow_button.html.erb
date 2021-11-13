@@ -10,9 +10,9 @@
       <%= f.submit 'Follow' %>
     <% end %>
   <% end %>
-
-  <%= link_to "フォロー： #{@user.followings.count}", followings_user_path(@user.id) %>
-  <%= link_to "フォロワー： #{@user.followers.count}", followers_user_path(@user.id) %>
-
 <% end %>
+
+<%= link_to "フォロー： #{@user.followings.count}", followings_user_path(@user.id) %>
+<%= link_to "フォロワー： #{@user.followers.count}", followers_user_path(@user.id) %>
+
 
