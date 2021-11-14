@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>New</h2>
+  <%= form_with model: @vote, url: votes_path, local: true do |f| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :title %>
+      </div>
+      <div class="col-md-9">
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :content %>
+      </div>
+      <div class="col-md-9">
+        <%= f.text_area :content, class: 'form-control' %>
+      </div>
+    </div>
+    <h3>Items</h3>
+    <%= button_tag 'Add Item', type: 'button', id: 'add_item' %>
+    <div id="items"></div>
+    <script>
+      $('#add_item').click(function() {
+        $('#items').append("<%= j(render partial: 'item') %>");
+      });
+    </script>
+    <%= f.submit 'CREATE VOTE', class: 'btn btn-primary' %>
+  <% end %>
+</div>

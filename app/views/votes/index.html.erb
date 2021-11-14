@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Index</h2>
+  <ul>
+    <% @votes.each do |vote| %>
+      <%= link_to vote_path(vote) do %>
+        <li><%= vote.title %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

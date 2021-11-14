@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Show</h2>
+  <h3><%= @vote.title %></h3>
+  <ul>
+    <% @vote.vote_items.each do |vi| %>
+      <li>
+        <%= link_to vote_vote_path(vote_id: @vote, vote_item_id: vi.id), method: :post do %>
+          <%= "#{vi.item} ( #{vi.vote_answers.count} )" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

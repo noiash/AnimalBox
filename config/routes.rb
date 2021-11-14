@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   end
 
+  resources :votes do
+    post 'vote', to: 'votes#vote'
+  end
+
   resources :tags do
     get 'posts', to: 'posts#search'
   end
