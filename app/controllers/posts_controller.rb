@@ -25,7 +25,7 @@ class PostsController < ApplicationController
        @post.save_tag(tag_list)
        redirect_to posts_path
     else
-       redirect_to posts_path
+       render :new
     end
 
   end

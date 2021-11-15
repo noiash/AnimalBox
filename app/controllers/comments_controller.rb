@@ -10,6 +10,15 @@ class CommentsController < ApplicationController
 
   end
 
+  def edit
+    @post = Post.find_by(params[:id])
+    @comment = Comment.find_by(params[:id])
+  end
+
+  def update
+  end
+
+
   def destroy
     @comment = Comment.find_by(params[:id])
     if @comment.destroy

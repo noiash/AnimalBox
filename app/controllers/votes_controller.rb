@@ -26,7 +26,7 @@ class VotesController < ApplicationController
   def vote
     vote_item_ids = VoteItem.where(vote_id: params[:vote_id]).pluck(:id)
     # TODO : After ADD user_id: current_user.id
-    check = VoteAnswer.where(vote_item_id: vote_item_ids, user_id: nil)
+    check = VoteAnswer.where(vote_item_id: vote_item_ids, user_id: current_user.id)
 
     if check.count > 0
       redirect_to vote_path(params[:vote_id])
@@ -34,8 +34,8 @@ class VotesController < ApplicationController
     end
 
     # TODO : After ADD user_id: current_user.id
-    vote_answer = VoteAnswer.new(vote_item_id: params[:vote_item_id])
-    if vote_answer.save!
+    vote_answer = VoteAnswer.new(user_id: current_user.id, vote_item_id: params[:vote_item_id])
+    if vote_answer.save
       redirect_to vote_path(params[:vote_id])
     else
       @vote = Vote.find(params[:vote_id])
