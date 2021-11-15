@@ -11,7 +11,9 @@
   <p><%= post.created_at %></p>
   <p><%= post.title %></p>
   <p><%= post.introduction %></p>
-  <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+  <%= link_to tag_posts_path(post.id) do %>
+    <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+  <% end %>
 
   <%# post.tags.each do |tag| %>
     <%#= tag.tag_name %>
