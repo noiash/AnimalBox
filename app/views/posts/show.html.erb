@@ -9,8 +9,13 @@
   <p><%= @post.user.name %></p>
   <p><%= @post.title %></p>
   <p><%= @post.introduction %></p>
-  <p><%= sanitize(@post.tags.pluck(:tag_name).join(' ')) %>
-
+  <p>
+    <% @post_tags.each do |tag| %>
+    <%= link_to tag_posts_path(tag_id: tag.id) do %>
+      <%= tag.tag_name %>
+    <% end %>
+  <% end %>
+  </p>
   <%# @post.tag_maps.each do |tag_map| %>
     <%#= tag_map.tag.tag_name %>
   <%# end %>
@@ -34,5 +39,9 @@
   <div id="likes_btn_<%= @post.id %>">
     <%= render 'likes/like', post: @post %>
   </div>
+
+</div>
+
+<div>
 
 </div>

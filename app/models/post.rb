@@ -32,8 +32,5 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :introduction, presence: true
-  validates :image_id, presence: true
-  validates :video_id, presence: true
-  validates :tag_maps, presence: true
 
 end
