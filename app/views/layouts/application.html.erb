@@ -17,7 +17,7 @@
   <body style="padding-top:5rem">
     <div class="container">
       <nav class="navbar navbar-expand navbar-dark bg-info fixed-top">
-      <a href="#" class="navbar-brand">あにまるぼっくす</a>
+      <a href="/" class="navbar-brand">あにまるぼっくす</a>
       <ul class="navbar-nav">
       <% if user_signed_in? %>
 
@@ -53,18 +53,19 @@
     <% end %>
     </ul>
     </nav>
-
-
-
-    <%= yield %>
   </div>
 </body>
 
-  <footer>
-    <div class="container mt-5">
-      <div class="row">
+
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container">
+      <div class="row no-gutters">
         <div class="mx-auto">
-          <p>CopyRight Infratop.inc</p>
+          <h6 class="text-black">CopyRight AnimalBox.inc</h6>
         </div>
       </div>
     </div>
