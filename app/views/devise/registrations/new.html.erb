@@ -1,53 +1,96 @@
-<h2>Sign up</h2>
-
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+<div class="containeer">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center pt-5 pb-3">新規会員登録</h2>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row">
+    <div class="col-md-12 pt-3">
+  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Name" class="form-label">お名前</label></p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center"><%= f.text_field :name, autofocus: true, class: 'form-control' %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Email" class="form-label">メールアドレス</label></p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Password" class="form-label">パスワード</label></p>
+      <% if @minimum_password_length %>
+        <em><% @minimum_password_length %></em>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center"><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.label :man %>
-    <%= f.radio_button :sex, :man %>
-    <%= f.label :woman %>
-    <%= f.radio_button :sex, :woman %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Email" class="form-label">パスワード(確認用)</label></p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :profile_image %><br />
-    <%= f.file_field :profile_image %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Email" class="form-label">性別</label></p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center">
+        <span class="mr-5">
+          <%= f.label :man %>
+          <%= f.radio_button :sex, :man %>
+        </span>
+        <%= f.label :woman %>
+        <%= f.radio_button :sex, :woman %>
+        </p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :introduction %><br />
-    <%= f.text_area :introduction %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Email" class="form-label">プロフィール画像</label></p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center"><%= f.file_field :profile_image, class: ''%></p>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Email" class="form-label">紹介文</label></p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-center"><%= f.text_area :introduction, class: 'form-control' %></p>
+    </div>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: 'btn btn-primary ml-auto d-block mr-5' %>
+      </div>
+
+    <% end %>
+    </div>
+  </div>
+</div>

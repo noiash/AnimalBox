@@ -19,9 +19,9 @@
 //= require turbolinks
 //= require_tree .
 
- /* global $*/
+/* global $*/
 $(document).ready(function () {
- $("#theTarget").skippr({
+  $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
     transition : 'slide',
     // 変化に係る時間(ミリ秒)
