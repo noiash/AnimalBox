@@ -1,33 +1,58 @@
-<h1>投稿一覧</h1>
-<div>
-  <h4>タグリスト</h4>
-  <% @tag_list.each do |list| %>
-    <%= link_to tag_posts_path(tag_id: list.id) do %>
-      <%= list.tag_name %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h1 class="text-center mb-5"><i class="fas fa-dog fa-2x mr-2" style="color: olive;"></i>投稿一覧<i class="fas fa-cat fa-2x ml-2" style="color: tan;"></i></h1>
+    </div>
+  </div>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-4 mb-4">
+    <h4 class="text-right">タグリスト</h4>
+  </div>
+  <div class="col-md-8">
+    <% @tag_list.each do |list| %>
+      <%= link_to tag_posts_path(tag_id: list.id) do %>
+        <%= list.tag_name %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
-<% @search_posts.each do |post| %>
-<div>
-<%= link_to post_path(post.id) do %>
-  <% if post.image_id.present? %>
-    <%= image_tag post.image_id.url, :size => '320x240' %>
-  <% else %>
-    <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
-  <% end %>
-<% end %>
-  <p><%= post.created_at %></p>
-  <p><%= post.title %></p>
-  <p><%= post.introduction %></p>
-  <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+<div class="card-list-container py-5">
+    <% @search_posts.each do |post| %>
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to post_path(post.id) do %>
+      <% if post.image_id.present? %>
+        <%= image_tag post.image_id.url, :size => '320x240', class: 'card-imag-top aline-item-center'; %>
+      <% else %>
+        <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
+      <% end %>
+    <% end %>
 
-  <%# post.tags.each do |tag| %>
-    <%#= tag.tag_name %>
-  <%# end %>
-  </p>
-  <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3">
+          <p><%= image_tag post.user.profile_image.url, :size => '50x50', class: "mt-3 rounded-circle"; %></p>
+          <p><i class="fas fa-user"></i><%= post.user.name %></p>
+        </div>
+        <div class="col-9">
+        <p><%= post.created_at %></p>
+        <p class="card-title"><%= post.title %></p>
+        <p class="card-text"><%= post.introduction %></p>
+        <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+
+        <%# post.tags.each do |tag| %>
+          <%#= tag.tag_name %>
+        <%# end %>
+        </p>
+        <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 </div>
-
-<% end %>
-
