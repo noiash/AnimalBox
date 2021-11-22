@@ -23,13 +23,15 @@
 </div>
 
 <div class="card-list-container py-5">
-    <% @search_posts.each do |post| %>
-    <div class="card w-50 mx-auto mt-4 shadow-lg">
+  <div class="row">
+    <% @posts.each do |post| %>
+    <div class="col-md-4">
+    <div class="card mx-auto mt-4 shadow-lg mycard">
     <%= link_to post_path(post.id) do %>
       <% if post.image_id.present? %>
-        <%= image_tag post.image_id.url, :size => '320x240', class: 'card-imag-top aline-item-center'; %>
+        <%= image_tag post.image_id.url, :width => '100%', class: 'card-imag-top aline-item-center'; %>
       <% else %>
-        <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
+        <%= video_tag(post.video_id.to_s, :controls => true, :width => '100%') %>
       <% end %>
     <% end %>
 
@@ -43,16 +45,21 @@
         <p><%= post.created_at %></p>
         <p class="card-title"><%= post.title %></p>
         <p class="card-text"><%= post.introduction %></p>
-        <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
-
+        <% post.tags.each do |tag| %>
+          <%= link_to tag_posts_path(tag_id: tag.id) do %>
+            <p class="card-tag"><%= tag.tag_name %></p>
+          <% end %>
+        <% end %>
         <%# post.tags.each do |tag| %>
           <%#= tag.tag_name %>
         <%# end %>
-        </p>
         <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
         </div>
       </div>
     </div>
   </div>
+  </div>
 <% end %>
+</div>
+<%= paginate @posts %>
 </div>

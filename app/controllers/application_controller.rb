@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def set_search
     #@search = Article.search(params[:q])
     @search = Post.ransack(params[:q])
-    @search_posts = @search.result.page(params[:page])
+    @posts = @search.result.page(params[:page]).per(9)
   end
 
   def after_sign_in_path_for(resource)

@@ -1,29 +1,38 @@
-<div>
-  <% if @post.image_id.present? %>
-    <%= image_tag @post.image_id.url, :size => '320x240' %>
-  <% else %>
-    <%= video_tag(@post.video_id.to_s, :controls => true, :size => '320x240') %>
-  <% end %>
-
-  <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <p><%= @post.user.name %></p>
-  <p><%= @post.title %></p>
-  <p><%= @post.introduction %></p>
-  <p>
-    <% @post_tags.each do |tag| %>
-    <%= link_to tag_posts_path(tag_id: tag.id) do %>
-      <%= tag.tag_name %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="card mx-auto mt-4 shadow-lg">
+    <% if @post.image_id.present? %>
+      <%= image_tag @post.image_id.url, :width => '80%', class: 'd-block mx-auto'%>
+    <% else %>
+      <%= video_tag(@post.video_id.to_s, :controls => true, :width => '80%', class: 'd-block mx-auto') %>
     <% end %>
-  <% end %>
-  </p>
-  <%# @post.tag_maps.each do |tag_map| %>
-    <%#= tag_map.tag.tag_name %>
-  <%# end %>
+    </div>
+  </div>
 
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-    <%= link_to "編集", edit_post_path(@post) %>
-  <% end %>
+  <div class="card-body">
+    <div class="row">
+    <h3 class="heading"><%= @post.title %></h3>
+    <p><%= @post.created_at.strftime('%Y/%m/%d') %><p>
+    <p><%= @post.user.name %></p>
+
+    <p><%= @post.introduction %></p>
+    <p>
+      <% @post_tags.each do |tag| %>
+      <%= link_to tag_posts_path(tag_id: tag.id) do %>
+        <%= tag.tag_name %>
+      <% end %>
+    <% end %>
+    </p>
+    <%# @post.tag_maps.each do |tag_map| %>
+      <%#= tag_map.tag.tag_name %>
+    <%# end %>
+
+    <% if @post.user == current_user %>
+      <%= link_to "削除", post_path(@post), method: :delete %>
+      <%= link_to "編集", edit_post_path(@post) %>
+    <% end %>
+  </div>
 
   <div>
     <h4>コメント</h4>

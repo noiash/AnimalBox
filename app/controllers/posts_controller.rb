@@ -2,7 +2,9 @@ class PostsController < ApplicationController
 
   def index
     @tag_list = Tag.all
-    @posts = Post.all
+    unless params[:q]
+      @posts = Post.all.reverse_order.page(params[:page]).per(9)
+    end
     @post = current_user.posts.new
   end
 
