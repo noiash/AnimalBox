@@ -1,44 +1,58 @@
-<h1><%= @user.name %>さんのページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= @user.name %>さん</h1>
+      <div id="follow-btn_<%= @user.id %>">
+        <%= render 'relationships/follow_button', user: @user %>
+      </div>
+    </div>
+  </div>
 
-<div id="follow-btn_<%= @user.id %>">
-  <%= render 'relationships/follow_button', user: @user %>
-</div>
+  <div class="row">
+    <div class="col-3">
+      <%= image_tag @user.profile_image.url, :size => '100x100', class: "mt-3 rounded-circle"; %>
+      <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-success' %></p>
+        <p><%= link_to "ペット登録", new_pet_path(@user), class: 'btn btn-warning' %></p>
+      <% end %>
+    </div>
 
-<div>
-  <%= image_tag @user.profile_image.url, :size => '100x100' %>
-  <%= @user.introduction %>
-  <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-    <p><%= link_to "ペット登録", new_pet_path(@user) %></p>
+    <div class="col-4">
+       <%= @user.introduction %>
+    </div>
+
+    <div class="col-5">
+      <% @pets.each do |pet| %>
+        <%= link_to pet_path(pet.id) do %>
+          <%= image_tag pet.profile_image.url, :width => '0%', class: "mt-3 rounded-circle"; %>
+        <% end %>
+        <%= pet.name %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+  <% @posts.each do |post| %>
+  <div>
+  <%= link_to post_path(post.id) do %>
+    <% if post.image_id.present? %>
+      <%= image_tag post.image_id.url, :size => '320x240' %>
+    <% else %>
+      <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
+    <% end %>
+  <% end %>
+    <p><%= post.created_at %></p>
+    <p><%= post.title %></p>
+    <p><%= post.introduction %></p>
+    <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
+
+    <%# post.tags.each do |tag| %>
+      <%#= tag.tag_name %>
+    <%# end %>
+    </p>
+  </div>
   <% end %>
 
-<% @pets.each do |pet| %>
-  <%= link_to pet_path(pet.id) do %>
-    <%= image_tag pet.profile_image.url, :size => '32x24'%>
-  <% end %>
-  <%= pet.name %>
-<% end %>
+  <%= paginate @posts %>
+  </div>
 </div>
-
-<% @posts.each do |post| %>
-<div>
-<%= link_to post_path(post.id) do %>
-  <% if post.image_id.present? %>
-    <%= image_tag post.image_id.url, :size => '320x240' %>
-  <% else %>
-    <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
-  <% end %>
-<% end %>
-  <p><%= post.created_at %></p>
-  <p><%= post.title %></p>
-  <p><%= post.introduction %></p>
-  <p><%= sanitize(post.tags.pluck(:tag_name).join(' ')) %>
-
-  <%# post.tags.each do |tag| %>
-    <%#= tag.tag_name %>
-  <%# end %>
-  </p>
-</div>
-<% end %>
-
-<%= paginate @posts %>

@@ -1,58 +1,82 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-    <div class="card mx-auto mt-4 shadow-lg">
-    <% if @post.image_id.present? %>
-      <%= image_tag @post.image_id.url, :width => '80%', class: 'd-block mx-auto'%>
-    <% else %>
-      <%= video_tag(@post.video_id.to_s, :controls => true, :width => '80%', class: 'd-block mx-auto') %>
-    <% end %>
-    </div>
-  </div>
-
-  <div class="card-body">
-    <div class="row">
-    <h3 class="heading"><%= @post.title %></h3>
-    <p><%= @post.created_at.strftime('%Y/%m/%d') %><p>
-    <p><%= @post.user.name %></p>
-
-    <p><%= @post.introduction %></p>
-    <p>
-      <% @post_tags.each do |tag| %>
-      <%= link_to tag_posts_path(tag_id: tag.id) do %>
-        <%= tag.tag_name %>
+      <div class="card mx-auto mt-4 shadow-lg">
+      <% if @post.image_id.present? %>
+        <%= image_tag @post.image_id.url, :width => '80%', class: 'd-block mx-auto'%>
+      <% else %>
+        <%= video_tag(@post.video_id.to_s, :controls => true, :width => '80%', class: 'd-block mx-auto') %>
       <% end %>
-    <% end %>
-    </p>
-    <%# @post.tag_maps.each do |tag_map| %>
-      <%#= tag_map.tag.tag_name %>
-    <%# end %>
-
-    <% if @post.user == current_user %>
-      <%= link_to "削除", post_path(@post), method: :delete %>
-      <%= link_to "編集", edit_post_path(@post) %>
-    <% end %>
-  </div>
-
-  <div>
-    <h4>コメント</h4>
-    <div id="comments_area">
-      <%= render partial: 'comments/index', locals: { comments: @comments } %>
+      </div>
     </div>
-    <% if user_signed_in? %>
-      <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-    <% end %>
-
-  </div>
-
-  <div id="likes_btn_<%= @post.id %>">
-    <%= render 'likes/like', post: @post %>
   </div>
 
 
+    <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <%= link_to user_path(@post.user_id) do %>
+              <%= image_tag @post.user.profile_image.url, :size => '80x80', class: "mt-3 rounded-circle"; %>
+              <p><%= @post.user.name %></p>
+            <% end %>
+          </div>
 
-</div>
+          <div class="col-8">
+            <h4 class="card-title"><%= @post.title %></h4>
+            <p class="card-text"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+            <p><%= @post.introduction %></p>
 
-<div>
+              <% @post_tags.each do |tag| %>
+                <%= link_to tag_posts_path(tag_id: tag.id) do %>
+                  <span class="tag-design"><%= tag.tag_name %></span>
+                <% end %>
+              <% end %>
+
+            <%# @post.tag_maps.each do |tag_map| %>
+              <%#= tag_map.tag.tag_name %>
+            <%# end %>
+          
+          
+            <% if @post.user == current_user %>
+              <%= link_to "削除", post_path(@post), method: :delete, class: 'btn btn-danger'%>
+              <%= link_to "編集", edit_post_path(@post), class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
+        <div class="card-body">
+        <h4 class="card-title">コメント</h4>
+          <% if user_signed_in? %>
+            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
+        <div class="card-body">
+          <div id="comments_area">
+            <%= render partial: 'comments/index', locals: { comments: @comments } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div id="likes_btn_<%= @post.id %>">
+      <%= render 'likes/like', post: @post %>
+    </div>
 
 </div>
