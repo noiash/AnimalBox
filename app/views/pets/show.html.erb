@@ -1,11 +1,42 @@
-<div>
-  <%= image_tag @pet.profile_image.url, :size => '320x240' %>
-  <%= @pet.name %>
-  <%= @pet.sex %>
-  <%= @pet.age %>
-  <%= @pet.type %>
-  <% if @pet.user == current_user %>
-    <%= link_to "削除する", pet_path(@pet), method: :delete %>
-    <%= link_to "編集する", edit_pet_path(@pet.id) %>
-  <% end %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="mt-3"><%= @pet.name %>のページ</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+      <%= image_tag @pet.profile_image.url, :size => '320x240' %>
+    </div>
+
+    <div class="col-6">
+      <h2 class="hdLine4 mb8p ml-2">プロフィール</h2>
+      <div class="bgPdg0">
+        <dl class="profile">
+          <dt>性別</dt>
+          <dd><%= @pet.sex %></dd>
+        </dl>
+        <dl class="profile">
+          <dt>年齢</dt>
+          <dd><%= @pet.age %></dd>
+        </dl>
+        <dl class="profile">
+          <dt>種類</dt>
+          <dd><%= @pet.type %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-4 mt-5">
+      <% if @pet.user == current_user %>
+        <%= link_to "削除する", pet_path(@pet), method: :delete, class: 'btn btn-danger' %>
+        <%= link_to "編集する", edit_pet_path(@pet.id), class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+

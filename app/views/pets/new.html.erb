@@ -1,35 +1,71 @@
-<h1>ペット登録</h1>
+<div class="containeer">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center pt-5 pb-3">ペット登録</h2>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-md-12 pt-3">
 <%= form_with model: @pet, local: true do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Name" class="form-label">名前</label></p>
+    </div>
+  <div class="col-md-4">
+      <p class="text-center"><%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :profile_image %><br />
-    <%= f.file_field :profile_image, autofocus: true %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="ProfileImage" class="form-label">プロフィール画像</label></p>
+    </div>
+  <div class="col-md-4">
+      <p class="text-center"><%= f.file_field :profile_image, autofocus: true, autocomplete: "prifile-image" %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.label :man %>
-    <%= f.radio_button :sex, :man %>
-    <%= f.label :woman %>
-    <%= f.radio_button :sex, :woman %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Sex" class="form-label">性別</label></p>
+    </div>
+   <div class="col-md-4">
+      <p class="text-center">
+        <span class="mr-5">
+          <%= f.label :man %>
+          <%= f.radio_button :sex, :man %>
+        </span>
+        <%= f.label :woman %>
+        <%= f.radio_button :sex, :woman %>
+        </p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, autofocus: true %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Age" class="form-label">年齢</label></p>
+    </div>
+  <div class="col-md-4">
+      <p class="text-center"><%= f.text_field :age, autofocus: true, class: 'form-control' %></p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
+  <div class="row">
+    <div class="col-md-5">
+      <p class="text-right mr-4"><label for="Type" class="form-label">種類</label></p>
+    </div>
+  <div class="col-md-4">
+      <p class="text-center"><%= f.text_field :type, autofocus: true, class: 'form-control' %></p>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit "登録する" %>
+    <%= f.submit "登録する", class: 'btn btn-primary ml-auto d-block mr-5' %>
   </div>
 
 <% end %>
+   </div>
+  </div>
+</div>
