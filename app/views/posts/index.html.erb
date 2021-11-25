@@ -17,7 +17,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="card-list-container py-5">
     <div class="row">
       <% @posts.each do |post| %>
@@ -25,9 +25,20 @@
       <div class="card mx-auto mt-4 shadow-lg mycard">
       <%= link_to post_path(post.id) do %>
         <% if post.image_id.present? %>
-          <%= image_tag post.image_id.url, :width => '100%', class: 'card-imag-top aline-item-center'; %>
+          <div class="box">
+            <div class="box-img">
+              <%= image_tag post.image_id.url, :width => '100%', class: 'card-imag-top aline-item-center'; %>
+              <span class="box-num">
+                <div id="likes_btn_<%= post.id %>">
+                    <%= render 'likes/like', post: post %>
+                </div>
+              </span>
+            </div>
+          </div>
         <% else %>
-          <%= video_tag(post.video_id.to_s, :controls => true, :width => '100%') %>
+          <div class="box">
+            <%= video_tag(post.video_id.to_s, :controls => true, :width => '100%') %>
+          </div>
         <% end %>
       <% end %>
 
@@ -52,11 +63,7 @@
         <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
         </div>
       </div>
-      <div id="likes_btn_<%= post.id %>">
-        <p class="d-flex reaction">
-          <%= render 'likes/like', post: post %>
-        </p>
-      </div>
+
     </div>
   </div>
   </div>

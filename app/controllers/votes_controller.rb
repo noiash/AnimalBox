@@ -43,6 +43,10 @@ class VotesController < ApplicationController
     end
   end
 
+  def destroy
+    redirect_to new_vote_path
+  end
+
   private
 
   def vote_params
