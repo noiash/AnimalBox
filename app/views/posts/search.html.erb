@@ -1,24 +1,49 @@
-<h2>投稿一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h1 class="text-center mb-5"><i class="fas fa-dog fa-2x mr-2" style="color: olive;"></i>タグが<%= "#{@tag.tag_name}" %>の投稿一覧<i class="fas fa-cat fa-2x ml-2" style="color: tan;"></i></h1>
+    </div>
+  </div>
 
-<% @tag_list.each do |list| %>
-  <%= link_to tag_posts_path(tag_id: list.id) do %>
-    <%= list.tag_name %>
-  <% end %>
-<% end %>
+  <div class="card-list-container py-5">
+    <div class="row">
+    <% @posts.each do |post| %>
+    <div class="col-md-4">
+      <div class="card mx-auto mt-4 shadow-lg mycard">
+      <%= link_to post_path(post.id) do %>
+        <% if post.image_id.present? %>
+          <%= image_tag post.image_id.url, :width => '100%', class: 'card-imag-top aline-item-center'; %>
+        <% else %>
+          <%= video_tag(post.video_id.to_s, :controls => true, :controls => true, :width => '100%') %>
+        <% end %>
+      <% end %>
 
-<p>タグが<%= "#{@tag.tag_name}" %>の投稿一覧</p>
-
-<% @posts.each do |post| %>
-  <%= link_to post_path(post.id) do %>
-    <% if post.image_id.present? %>
-      <%= image_tag post.image_id.url, :size => '320x240' %>
-    <% else %>
-      <%= video_tag(post.video_id.to_s, :controls => true, :size => '320x240') %>
-    <% end %>
-  <% end %>
-
-  <p><%= post.created_at %></p>
-  <p><%= post.title %></p>
-  <p><%= post.introduction %></p>
-
-<% end %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <p><%= image_tag post.user.profile_image.url, :size => '50x50', class: "mt-3 rounded-circle"; %></p>
+            <p><i class="fas fa-user"></i><%= post.user.name %></p>
+            <div id="likes_btn_<%= post.id %>">
+              <p class="d-flex reaction">
+                <%= render 'likes/like', post: post %>
+              </p>
+            </div>
+          </div>
+          <div class="col-9">
+            <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+            <p class="card-title"><%= post.title %></p>
+            <p class="card-text"><%= post.introduction %></p>
+            <% post.tags.each do |tag| %>
+              <%= link_to tag_posts_path(tag_id: tag.id) do %>
+                <p class="card-tag"><%= tag.tag_name %></p>
+              <% end %>
+            <% end %>
+            <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+      <% end %>
+    </div>
+  </div>

@@ -5,35 +5,31 @@
     </div>
   </div>
 
-
-
-
-
-<div class="row">
-  <div class="col-md-4 mb-4">
-    <h4 class="text-right">タグリスト</h4>
-  </div>
-  <div class="col-md-8">
-    <% @tag_list.each do |list| %>
-      <%= link_to tag_posts_path(tag_id: list.id) do %>
-        <%= list.tag_name %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-<div class="card-list-container py-5">
   <div class="row">
-    <% @posts.each do |post| %>
-    <div class="col-md-4">
-    <div class="card mx-auto mt-4 shadow-lg mycard">
-    <%= link_to post_path(post.id) do %>
-      <% if post.image_id.present? %>
-        <%= image_tag post.image_id.url, :width => '100%', class: 'card-imag-top aline-item-center'; %>
-      <% else %>
-        <%= video_tag(post.video_id.to_s, :controls => true, :width => '100%') %>
+    <div class="col-md-4 mb-4">
+      <h4 class="text-right">タグリスト</h4>
+    </div>
+    <div class="col-md-8">
+      <% @tag_list.each do |list| %>
+        <%= link_to tag_posts_path(tag_id: list.id) do %>
+          <%= list.tag_name %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+  </div>
+  
+  <div class="card-list-container py-5">
+    <div class="row">
+      <% @posts.each do |post| %>
+      <div class="col-md-4">
+      <div class="card mx-auto mt-4 shadow-lg mycard">
+      <%= link_to post_path(post.id) do %>
+        <% if post.image_id.present? %>
+          <%= image_tag post.image_id.url, :width => '100%', class: 'card-imag-top aline-item-center'; %>
+        <% else %>
+          <%= video_tag(post.video_id.to_s, :controls => true, :width => '100%') %>
+        <% end %>
+      <% end %>
 
     <div class="card-body">
       <div class="row">
@@ -42,7 +38,7 @@
           <p><i class="fas fa-user"></i><%= post.user.name %></p>
         </div>
         <div class="col-9">
-        <p><%= post.created_at %></p>
+        <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
         <p class="card-title"><%= post.title %></p>
         <p class="card-text"><%= post.introduction %></p>
         <% post.tags.each do |tag| %>
@@ -55,6 +51,11 @@
         <%# end %>
         <p><%= link_to "#{post.comments.count}コメント", post_path(post.id) %></p>
         </div>
+      </div>
+      <div id="likes_btn_<%= post.id %>">
+        <p class="d-flex reaction">
+          <%= render 'likes/like', post: post %>
+        </p>
       </div>
     </div>
   </div>

@@ -1,17 +1,55 @@
-<%= form_with model: @post, url: post_path, local: true do |f| %>
-  <h4>画像/動画</h4>
-  <%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %><%= f.file_field :video_id, :accept => 'video/*'%>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>本文</h4>
-  <%= f.text_area :introduction %>
-  <h4>タグ</h4>
-  <%# tags = "" %>
-  <%# @post.tags.each do |tag|%>
-  <%#   tags += tag.tag_name + " " %>
-  <%# end %>
-  <%#= f.text_field :tag_name, value: tags %>
-  <%= f.text_field :tag_name, value: @post.tags.pluck(:tag_name).join(' ') %>
+<div class="containeer">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center pt-5 pb-3">投稿編集</h2>
+    </div>
+  </div>
 
-  <%= f.submit '変更を保存' %>
-<% end %>
+  <div class="row">
+    <div class="col-md-12 pt-3">
+    <%= form_with model: @post, url: post_path, local: true do |f| %>
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="ImageVideo" class="form-label">画像または動画</label></p>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center"><%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %><%= f.file_field :video_id, :accept => 'video/*' %></p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="Title" class="form-label">タイトル</label></p>
+        </div>
+      <div class="col-md-4">
+          <p class="text-center"><%= f.text_field :title, autofocus: true, class: 'form-control' %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="Capture" class="form-label">本文</label></p>
+        </div>
+      <div class="col-md-4">
+          <p class="text-center"><%= f.text_area :introduction, autofocus: true, class: 'form-control' %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="Tag" class="form-label">タグ</label></p>
+        </div>
+      <div class="col-md-4">
+          <p class="text-center"><%= f.text_field :tag_name, value: @post.tags.pluck(:tag_name).join(' '), class: 'form-control' %></p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "投稿する", class: 'btn btn-primary ml-auto d-block mr-5' %>
+      </div>
+
+    <% end %>
+    </div>
+  </div>
+</div>
