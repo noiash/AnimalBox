@@ -37,7 +37,9 @@
           </div>
         <% else %>
           <div class="box">
-            <%= video_tag(post.video_id.to_s, controls: true, style: 'width: 100%; height: 240px; object-fit: cover;') %>
+            <%= link_to post_path(post.id) do %>
+              <%= video_tag(post.video_id.to_s, controls: true, style: 'width: 100%; height: 240px; object-fit: cover;') %>
+            <% end %>
             <div id="likes_btn_<%= post.id %>">
               <%= render 'likes/like', post: post %>
             </div>
@@ -48,16 +50,19 @@
     <div class="card-body">
       <div class="row">
         <div class="col-3">
-          <p><%= image_tag post.user.profile_image.url, :size => '50x50', class: "mt-3 rounded-circle"; %></p>
+          <%= link_to user_path(post.user_id) do %>
+            <p><%= image_tag post.user.profile_image.url, :size => '50x50', class: "mt-3 rounded-circle"; %></p>
+          <% end %>
           <p><i class="fas fa-user"></i><%= post.user.name %></p>
         </div>
+
         <div class="col-9">
         <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
-        <p class="card-title"><%= post.title %></p>
+        <h4 class="card-title"><%= post.title %></h4>
         <p class="card-text"><%= post.introduction %></p>
         <% post.tags.each do |tag| %>
           <%= link_to tag_posts_path(tag_id: tag.id) do %>
-            <p class="card-tag"><%= tag.tag_name %></p>
+            <span class="tag-design mb-2"><%= tag.tag_name %></span>
           <% end %>
         <% end %>
         <%# post.tags.each do |tag| %>

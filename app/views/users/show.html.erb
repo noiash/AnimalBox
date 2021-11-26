@@ -63,12 +63,12 @@
           <p><i class="fas fa-user"></i><%= post.user.name %></p>
         </div>
         <div class="col-9">
-          <p><%= post.created_at %></p>
-          <p class="card-title"><%= post.title %></p>
+          <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+          <h4 class="card-title"><%= post.title %></h4>
           <p class="card-text"><%= post.introduction %></p>
           <% post.tags.each do |tag| %>
             <%= link_to tag_posts_path(tag_id: tag.id) do %>
-              <p class="card-tag"><%= tag.tag_name %></p>
+              <span class="tag-design"><%= tag.tag_name %></span>
             <% end %>
           <% end %>
           <%# post.tags.each do |tag| %>

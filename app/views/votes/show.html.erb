@@ -13,4 +13,6 @@
     <%= pie_chart @vote_answers.group(:id).count %>
   </ul>
   <%= link_to "戻る", votes_path %>
+  <%= link_to "削除", vote_path(@vote), method: :delete, class: 'btn btn-danger' %>
+
 </div>

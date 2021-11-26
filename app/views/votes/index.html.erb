@@ -1,12 +1,27 @@
 <div class="container">
-  <h2>Index</h2>
-  <ul>
-    <% @votes.each do |vote| %>
-      <%= link_to vote_path(vote) do %>
-        <li><%= vote.title %></li>
-      <% end %>
-    <% end %>
-  </ul>
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h1 class="text-center mb-5">ランキング一覧</h1>
+      <div class="text-right mr-5">
+        <%= link_to "投票作成する", new_vote_path, class: 'btn btn-success mb-3' %>
+      </div>
+    </div>
+  </div>
 
-  <%= link_to "投票作成する", new_vote_path, class: 'btn btn-success' %>
+
+    <% @votes.each do |vote| %>
+      <div class="card border-dark mb-3 ml-5" style="max-width: 50rem;">
+        <%= link_to vote_path(vote), class: 'card-body text-dark' do %>
+        <div class="row">
+          <div class="col-md-12">
+            <p><%= l vote.created_at, format: :short %></p>
+            <h5 class="card-title"><%= vote.title %></h5>
+            <p class="card-text"><%= vote.content %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+
+ <% paginate @votes %>
 </div>

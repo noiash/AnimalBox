@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   def index
-    @votes = Vote.all
+    @votes = Vote.all.reverse_order.page(params[:page]).per(10)
   end
 
   def new
@@ -21,7 +21,6 @@ class VotesController < ApplicationController
 
   def show
     @vote = Vote.find(params[:id])
-
     vote_item_ids = VoteItem.where(vote_id: params[:id]).pluck(:id)
     @vote_answers = VoteAnswer.where(vote_item_id: vote_item_ids)
   end
@@ -49,7 +48,9 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    redirect_to new_vote_path
+    @vote = Vote.find(params[:id])
+    @vote.destroy
+    redirect_to votes_path
   end
 
   private
