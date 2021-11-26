@@ -21,7 +21,12 @@ class VotesController < ApplicationController
 
   def show
     @vote = Vote.find(params[:id])
+
+    vote_item_ids = VoteItem.where(vote_id: params[:id]).pluck(:id)
+    @vote_answers = VoteAnswer.where(vote_item_id: vote_item_ids)
   end
+
+
 
   def vote
     vote_item_ids = VoteItem.where(vote_id: params[:vote_id]).pluck(:id)

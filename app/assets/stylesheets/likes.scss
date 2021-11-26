@@ -1,12 +1,27 @@
 // Place all the styles related to the Likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.like-container {
+  display: flex;
+  margin-bottom: 30px;
+  align-items: baseline;
+}
+
 .like-btn {
   width: 25px;
   height: 30px;
   font-size: 50px;
   color: #808080;
   margin-left: 20px;
+}
+
+.like-count {
+  width: 25px;
+  height: 30px;
+  font-size: 50px;
+  color: #808080;
+  padding-left: 30px;
 }
 
 .unlike-btn {
@@ -17,4 +32,12 @@
   margin-left: 20px;
 }
 
+
+.unlike-count {
+  width: 25px;
+  height: 30px;
+  font-size: 50px;
+  color: #e54747;
+  padding-left: 30px;
+}
 
