@@ -1,6 +1,10 @@
 <div class="container">
-  <h2>Show</h2>
-  <h3><%= @vote.title %></h3>
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h1 class="text-center mb-5"><%= @vote.title %></h1>
+    </div>
+  </div>
+
   <ul>
     <% @vote.vote_items.each do |vi| %>
       <li>
@@ -13,6 +17,8 @@
     <%= pie_chart @vote_answers.group(:id).count %>
   </ul>
   <%= link_to "戻る", votes_path %>
-  <%= link_to "削除", vote_path(@vote), method: :delete, class: 'btn btn-danger' %>
+  <% if @vote.user_id == current_user.id %>
+    <%= link_to "削除", vote_path(@vote), method: :delete, class: 'btn btn-danger' %>
+  <% end %>
 
 </div>

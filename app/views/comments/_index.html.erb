@@ -1,14 +1,28 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %>
-  <div id="comment_<%= comment.id %>" >
-    <p>コメント：<%= comment.comment %></p>
+  <div class="balloon5">
+    <div class="col-5 faceicon">
+        <%= link_to user_path(comment.user.id) do %>
+          <%= image_tag comment.user.profile_image.url, :size => '80x80', class: "mt-3 rounded-circle"; %><br>
+          <span><%= comment.user.name %>さん</span>
+        <% end %>
+    </div>
+
+    <div class="chatting">
+      <div class="col-7 says">
+        <div id="comment_<%= comment.id %>">
+          <p><%= comment.comment %></p>
+        </div>
+      </div>
+    </div>
   </div>
 
-    <p><%= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></p>
-    <% if comment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %></p>
-      <p><%= link_to 'コメントを編集する', edit_post_comment_path(comment.post_id, comment.id), remote: true %></p>
-
-    <% end %>
+      <div class="col-12">
+        <% if comment.user == current_user %>
+          <span><%= link_to 'コメント削除', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: 'btn btn-danger' %></span>
+          <span><%= link_to 'コメント編集', edit_post_comment_path(comment.post_id, comment.id), remote: true, class: 'btn btn-success' %></span>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 <% end %>

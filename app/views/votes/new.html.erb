@@ -5,6 +5,13 @@
     </div>
   </div>
 
+  <% if @vote.errors.any? %>
+    <%= @vote.errors.count %>件のエラーが発生しました
+    <% @vote.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
   <div class="row">
     <div class="col-md-12 pt-3">
   <%= form_with model: @vote, url: votes_path, local: true do |f| %>
