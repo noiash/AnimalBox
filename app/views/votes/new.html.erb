@@ -39,18 +39,24 @@
       </div>
       <div class="col-md-4">
         <%= button_tag '追加', type: 'button', id: 'add_item' %>
-        <%= button_tag '削除', type: 'button', id: 'add_item', method: :delete %>
-        <div id="items"></div>
+        <%= button_tag '削除', type: 'button', id: 'delete_item' %>
+
+        <div id="items">
+          <%= text_field_tag "vote[items][]" %><br></div>
           <script>
             $('#add_item').click(function() {
               $('#items').append("<%= j(render partial: 'item') %>");
+            });
+
+            $('#delete_item').click(function() {
+              $('#items').remove("<%= j(render partial: 'item') %>");
             });
           </script>
         </div>
       </div>
 
       <div class="actions">
-        <p class="text-center"><%= f.submit "作成する", class: 'btn btn-primary' %></p>
+        <p class="text-center"><%= f.submit "作成する", class: 'btn btn-primary create-vote' %></p>
       </div>
 
   <% end %>

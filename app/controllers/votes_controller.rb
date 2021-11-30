@@ -9,7 +9,7 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new(vote_params)
-    params[:vote][:item].each do |vi|
+    params[:vote][:items].each do |vi|
       @vote.vote_items.new(item: vi) unless vi.blank?
     end
     if @vote.save
@@ -48,7 +48,7 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote = Vote.find(params[:vote_id])
+    @vote = Vote.find(params[:id])
     @vote.destroy
     redirect_to votes_path
   end

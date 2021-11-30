@@ -14,7 +14,7 @@
       </li>
     <% end %>
 
-    <%= pie_chart @vote_answers.group(:id).count %>
+    <%= pie_chart @vote_answers.group(:vote_item_id).count %>
   </ul>
   <%= link_to "戻る", votes_path %>
   <% if @vote.user_id == current_user.id %>
