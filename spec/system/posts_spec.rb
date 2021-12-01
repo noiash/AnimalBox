@@ -4,13 +4,13 @@ require 'rails_helper'
 
 describe '投稿のテスト' do
   let!(:post) { create(:post, title: 'hoge', introduction: 'introduction') }
-  describe 'トップ画面（root_path）のテスト' do
+  describe 'トップ画面(root_path)のテスト' do
     before do
       visit root_path
     end
     context '表示の確認' do
-      it 'トップ画面（root_path）に「あにまるぼっくすにようこそ！」が表示されているか' do
-        expect(page).to have_content 'あにまるぼっくすにようこそ！'
+      it 'トップ画面(root_path)に一覧ページへのリンクが表示されているか' do
+        expect(page).to have_link "", href: posts_path
       end
       it 'root_pathが"/"であるか' do
         expect(current_path).to eq('/')
@@ -18,7 +18,7 @@ describe '投稿のテスト' do
     end
   end
 
-  describe '投稿画面(new_post_path)のテスト' do
+  describe '一覧画面のテスト' do
     before do
       visit new_post_path
     end
