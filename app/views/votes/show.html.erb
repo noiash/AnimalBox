@@ -5,18 +5,28 @@
     </div>
   </div>
 
-  <ul>
-    <% @vote.vote_items.each do |vi| %>
-      <li>
-        <%= link_to vote_vote_path(vote_id: @vote, vote_item_id: vi.id), method: :post do %>
-          <%= "#{vi.item} ( #{vi.vote_answers.count} )" %>
-        <% end %>
-      </li>
-    <% end %>
 
-    <%= pie_chart @vote_answers.group(:vote_item_id).count %>
-  </ul>
-  <%= link_to "戻る", votes_path %>
+  <div class="row">
+    <div class="col-md-3">
+    <h4 class="pb-3">こちらの項目から投票してください↓</h4>
+    <ul>
+      <% @vote.vote_items.each do |vi| %>
+        <li>
+          <%= link_to vote_vote_path(vote_id: @vote, vote_item_id: vi.id), method: :post do %>
+            <p><%= vi.item %></p>
+          <% end %>
+          <p><%= vi.vote_answers.count %>票入っています！</p>
+        </li>
+      <% end %>
+    </div>
+    </ul>
+
+    <div class="col-md-9">
+      <%= pie_chart @vote_answers.group(:vote_item_id).count %>
+    </div>
+  </div>
+
+  <%= link_to "戻る", votes_path, class: 'btn btn-success' %>
   <% if @vote.user_id == current_user.id %>
     <%= link_to "削除", vote_path(@vote), method: :delete, class: 'btn btn-danger' %>
   <% end %>
