@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:search]
 
   def index
     @tag_list = Tag.all
