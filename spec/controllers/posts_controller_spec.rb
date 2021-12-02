@@ -136,4 +136,122 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "#edit" do
+    before do
+      @post = @user.posts.create(
+      title: "タイトル",
+      introduction: "本文",
+      )
+    end
+    # 正常なレスポンスか？
+    it "responds successfully" do
+      sign_in @user
+      get :edit, params: {id: @post.id}
+      expect(response).to be_success
+    end
+    # 200レスポンスが返ってきているか？
+    it "returns a 200 response" do
+      sign_in @user
+      get :edit, params: {id: @post.id}
+      expect(response).to have_http_status "200"
+    end
+    it "アクセスに失敗するか" do
+      get :edit, params: {id: @post.id}
+      expect(response).to_not be_success
+    end
+    # 302レスポンスが返ってきているか？
+    it "returns a 302 response" do
+      get :edit, params: {id: @post.id}
+      expect(response).to have_http_status "302"
+    end
+  end
+
+  describe "#update" do
+    before do
+      @post = @user.posts.create(
+      title: "タイトル",
+      introduction: "本文",
+      )
+    end
+    # 正常なレスポンスか？
+    it "responds successfully" do
+      sign_in @user
+      post_params = {
+        title: "タイトル",
+        introduction: "本文",
+        image_id: 1,
+        video_id: 1,
+        tag_name: "タグ"
+      }
+      patch :update, params: {id: @post.id, post: post_params}
+      expect(response).to have_http_status "302"
+    end
+    # 200レスポンスが返ってきているか？
+    it "returns a 200 response" do
+      sign_in @user
+      post_params = {
+        title: "タイトル",
+        introduction: "本文",
+        image_id: 1,
+        video_id: 1,
+        tag_name: "タグ"
+      }
+      patch :update, params: {id: @post.id, post: post_params}
+      expect(response).to have_http_status "302"
+    end
+    it "アクセスに失敗するか" do
+      post_params = {
+        title: "タイトル",
+        introduction: "本文",
+        image_id: 1,
+        video_id: 1,
+        tag_name: "タグ"
+      }
+      patch :update, params: {id: @post.id, post: post_params}
+      expect(response).to_not be_success
+    end
+    # 302レスポンスが返ってきているか？
+    it "returns a 302 response" do
+      post_params = {
+        title: "タイトル",
+        introduction: "本文",
+        image_id: 1,
+        video_id: 1,
+        tag_name: "タグ"
+      }
+      patch :update, params: {id: @post.id, post: post_params}
+      expect(response).to have_http_status "302"
+    end
+  end
+
+  describe "#destroy" do
+    before do
+      @post = @user.posts.create(
+      title: "タイトル",
+      introduction: "本文",
+      )
+    end
+    # 正常なレスポンスか？
+    it "responds successfully" do
+      sign_in @user
+      delete :destroy, params: {id: @post.id}
+      expect(response).to have_http_status "302"
+    end
+    # 200レスポンスが返ってきているか？
+    it "returns a 200 response" do
+      sign_in @user
+      delete :destroy, params: {id: @post.id}
+      expect(response).to have_http_status "302"
+    end
+    it "アクセスに失敗するか" do
+      delete :destroy, params: {id: @post.id}
+      expect(response).to_not be_success
+    end
+    # 302レスポンスが返ってきているか？
+    it "returns a 302 response" do
+      delete :destroy, params: {id: @post.id}
+      expect(response).to have_http_status "302"
+    end
+  end
+
 end
