@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @votes = Vote.all.reverse_order.page(params[:page]).per(10)
   end
