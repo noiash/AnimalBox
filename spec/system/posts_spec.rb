@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 describe '投稿のテスト' do
+  before do
+    @user = FactoryBot.build(:user)
+  end
   let!(:post) { create(:post, title: 'hoge', introduction: 'introduction') }
   describe 'トップ画面(root_path)のテスト' do
     before do
@@ -20,6 +23,7 @@ describe '投稿のテスト' do
 
   describe '一覧画面のテスト' do
     before do
+      sign_in @user
       visit new_post_path
     end
     context '表示の確認' do

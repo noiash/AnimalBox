@@ -32,5 +32,7 @@ class User < ApplicationRecord
     relationship.destroy if relationship
   end
 
+  validates :name, presence: true
+
 end
 
