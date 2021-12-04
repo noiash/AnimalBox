@@ -12,7 +12,7 @@
     <div class="col-md-8">
       <% @tag_list.each do |list| %>
         <%= link_to tag_posts_path(tag_id: list.id) do %>
-          <%= list.tag_name %>
+          <span class="tag-design"><%= list.tag_name %></span>
         <% end %>
       <% end %>
     </div>
