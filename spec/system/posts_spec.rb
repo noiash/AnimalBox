@@ -9,6 +9,8 @@ describe '投稿のテスト' do
   let!(:post) { create(:post, title: 'hoge', introduction: 'introduction') }
   let(:image_path) { File.join(Rails.root, 'spec/fixtures/image.jpg') }
   let(:image) { Rack::Test::UploadedFile.new(image_path) }
+  let(:profile_image_path) { File.join(Rails.root, 'spec/fixtures/image.jpg') }
+  let(:profile_image) { Rack::Test::UploadedFile.new(image_path) }
   describe 'トップ画面(root_path)のテスト' do
     before do
       visit root_path
@@ -62,7 +64,9 @@ describe '投稿のテスト' do
   describe '詳細画面のテスト' do
     before do
       sign_in @user
-      visit post_path(post)
+      @user.posts.build(title: Faker::Lorem.characters(number:10),
+      introduction: Faker::Lorem.characters(number:30)).save
+      visit post_path(@user.posts.first.id)
     end
     context '表示の確認' do
       it '削除リンクが存在しているか' do
@@ -74,9 +78,9 @@ describe '投稿のテスト' do
     end
     context 'リンクの遷移先の確認' do
       it '編集の遷移先は編集画面か' do
-        edit_link = find_all('a')[3]
-        edit_link.click_button
-        expect(current_path).to eq('/posts/' + post.id.to_s + '/edit')
+        expect(page).to have_link '編集'
+        click_link '編集'
+        expect(current_path).to eq("/posts/#{@user.posts.first.id}/edit")
       end
     end
     context 'post削除のテスト' do
