@@ -4,9 +4,11 @@ require 'rails_helper'
 
 describe '投稿のテスト' do
   before do
-    @user = FactoryBot.build(:user)
+    @user = FactoryBot.create(:user)
   end
   let!(:post) { create(:post, title: 'hoge', introduction: 'introduction') }
+  let(:image_path) { File.join(Rails.root, 'spec/fixtures/image.jpg') }
+  let(:image) { Rack::Test::UploadedFile.new(image_path) }
   describe 'トップ画面(root_path)のテスト' do
     before do
       visit root_path
@@ -39,13 +41,14 @@ describe '投稿のテスト' do
         fill_in 'post[title]', with: Faker::Lorem.characters(number:10)
         fill_in 'post[introduction]', with: Faker::Lorem.characters(number:30)
         click_button '投稿する'
-        expect(page).to have_current_path post_path(Post.last)
+        expect(page).to have_current_path posts_path
       end
     end
   end
 
   describe "投稿一覧のテスト" do
     before do
+      sign_in @user
       visit posts_path
     end
     context '表示の確認' do
@@ -58,6 +61,7 @@ describe '投稿のテスト' do
 
   describe '詳細画面のテスト' do
     before do
+      sign_in @user
       visit post_path(post)
     end
     context '表示の確認' do
@@ -84,7 +88,8 @@ describe '投稿のテスト' do
 
   describe '編集画面のテスト' do
     before do
-      visit edit_post_psth(post)
+      sign_in @user
+      visit edit_post_path(post)
     end
     context '表示の確認' do
       it '編集前のタイトルと本文がフォームに表示（セット）されている' do

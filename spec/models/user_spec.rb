@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = FactoryBot.create(:user)
+    @user = FactoryBot.build(:user)
   end
   it "有効な状態であるか" do
     expect(@user).to be_valid
@@ -21,9 +21,11 @@ RSpec.describe User, type: :model do
   end
 
   it "重複したメールアドレスなら無効であること" do
-    user = User.new(email: "test@user")
-    expect(user).to be_invalid
-    expect(user.errors[:email]).to include("has already been taken")
+    @user.save
+    another_user = FactoryBot.build(:user)
+    another_user.email = @user.email
+    another_user.valid?
+    expect(another_user.errors[:email]).to include("has already been taken")
   end
 
   it "メールアドレスが小文字化されていること" do
@@ -31,12 +33,6 @@ RSpec.describe User, type: :model do
     @user.email = mixed_case_email
     @user.save
     expect(@user[:email]).to eq("taro@com")
-  end
-
-  it "メールアドレスの一貫性の検証" do
-    user = User.create(name: "Tako", email: "test@user")
-    expect(user).to_not be_valid
-    expect(user.errors[:email]).to include("has already been taken")
   end
 
   describe 'アソシエーションのテスト' do
