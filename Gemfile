@@ -79,5 +79,9 @@ gem 'jquery-rails'
 
 gem 'chartkick'
 
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
 
 
