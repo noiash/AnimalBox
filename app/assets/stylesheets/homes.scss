@@ -11,6 +11,7 @@
 }
 h1 {
   font-family: 'Raleway', sans-serif;
+  font-size: 2.0rem;
 }
 .totem {
   color: #2196F3;
@@ -18,4 +19,15 @@ h1 {
 
 h3 {
   font-family: 'Raleway', sans-serif;
+}
+
+.main-image {
+  background-image: image-url("image6.jpg");
+  height: 800px;
+  background-size: cover;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.main-text {
+  background-color: rgba(255, 255, 255, 0.5);
 }
