@@ -2,11 +2,21 @@
   <div class="row">
     <div class="col-md-12 mt-5">
       <h1 class="text-center mb-5">ランキング一覧</h1>
-      <div class="text-right mr-5">
-        <%= link_to "投票作成する", new_vote_path, class: 'btn btn-success mb-3' %>
-      </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-8">
+      <div class="text-right mr-5">
+        <h4 class="">いろんなランキングを作ることができます→→→</h4>
+      </div>
+    </div>
+    <div class="col-4">
+      <%= link_to "投票作成する", new_vote_path, class: 'btn btn-success mb-3' %>
+    </div>
+  </div>
+
+
 
 
     <% @votes.each do |vote| %>
@@ -14,7 +24,7 @@
         <%= link_to vote_path(vote), class: 'card-body text-dark' do %>
         <div class="row">
           <div class="col-md-12">
-            <p><%= l vote.created_at, format: :short %></p>
+            <p><%= vote.created_at.strftime('%Y/%m/%d') %></p>
             <h5 class="card-title"><%= vote.title %></h5>
             <p class="card-text"><%= vote.content %></p>
           </div>
