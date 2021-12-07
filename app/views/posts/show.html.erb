@@ -11,18 +11,18 @@
     </div>
   </div>
 
-
+  <div class="row">
     <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
       <div class="card-body">
         <div class="row">
-          <div class="col-4">
+          <div class="col-md-3">
             <%= link_to user_path(@post.user_id) do %>
               <%= image_tag @post.user.profile_image.url, :size => '80x80', class: "mt-3 rounded-circle"; %>
               <p><%= @post.user.name %></p>
             <% end %>
           </div>
 
-          <div class="col-8">
+          <div class="col-md-9">
             <h4 class="card-title"><%= @post.title %></h4>
             <p class="card-text"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
             <p><%= @post.introduction %></p>
@@ -46,25 +46,26 @@
         </div>
       </div>
     </div>
+  </div>
 
 
-  <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-12">
-        <h4 class="card-title">コメント</h4>
-          <% if user_signed_in? %>
-            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-          <% end %>
+  <div class="row">
+    <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
+      <div class="card-body">
+          <div class="col-md-12">
+          <h4 class="card-title">コメント</h4>
+            <% if user_signed_in? %>
+              <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+            <% end %>
 
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
-    <div class="card-body">
-      <div class="row">
+  <div class="row">
+    <div class="card mx-auto text-center bg-light mb-3 mt-3" style="width: 50rem;">
+      <div class="card-body">
         <div class="col-md-12">
           <div id="comments_area">
             <%= render partial: 'comments/index', locals: { comments: @comments } %>
