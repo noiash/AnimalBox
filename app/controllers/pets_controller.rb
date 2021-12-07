@@ -1,10 +1,5 @@
 class PetsController < ApplicationController
 
-  def index
-    @pets = Pet.all.includes(:user)
-    @pet = current_user.pets.new
-  end
-
   def new
     @pet = Pet.new
   end

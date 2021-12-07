@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get :followers, on: :member
   end
 
-  resources :pets, only:[:new, :create, :index, :show, :update, :edit, :destroy]
+  resources :pets, only:[:new, :create, :show, :update, :edit, :destroy]
   resources :posts, only:[:new, :create, :index, :show, :update, :edit, :destroy] do
     resource :likes, only:[:create, :destroy]
 
