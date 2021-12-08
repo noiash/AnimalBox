@@ -5,7 +5,12 @@
 .hdLine4 {
   color: #574b40;
   font-size: 16px;
+  background: #f8e39f;
+  box-shadow: 0px 0px 0px 5px #f8e39f;
+  border: dashed 2px white;
+  padding: 0.2em 0.5em;
 }
+
 .mb8p {
   margin-bottom: 8px !important;
 }
@@ -47,4 +52,8 @@
   font-size: 15px;
   font-weight: bold;
   padding: 4px 0 0;
+}
+
+.top-name {
+  color: #CD853F;
 }

@@ -2,12 +2,12 @@
   <% if current_user.following?(user) %>
     <%= form_with(model: @relationship, url: relationship_path(user.id), method: :delete, remote: true) do |f| %>
       <%= f.hidden_field :follow_id, value: user.id %>
-      <%= f.submit 'unfollow' %>
+      <%= f.submit 'フォローを外す', class: 'btn btn-outline-secondary' %>
     <% end %>
   <% else %>
     <%= form_with model: @set_relationship, url: relationships_path, remote: true do |f| %>
       <%= f.hidden_field :follow_id, value: user.id %>
-      <%= f.submit 'Follow' %>
+      <%= f.submit 'フォローする', class: 'btn btn-outline-info' %>
     <% end %>
   <% end %>
 <% end %>

@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <h1 class="text-center mb-5">ランキング一覧</h1>
+      <h1 class="text-center mb-5">アニマルランキング一覧</h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-8">
       <div class="text-right mr-5">
-        <h4 class="">いろんなランキングを作ることができます→→→</h4>
+        <h4 class="">動物に関するランキングを作ることができます→→→</h4>
       </div>
     </div>
     <div class="col-4">
@@ -33,5 +33,7 @@
       </div>
     <% end %>
 
- <% paginate @votes %>
+    <div class="pagination">
+      <% paginate @votes %>
+    </div>
 </div>
