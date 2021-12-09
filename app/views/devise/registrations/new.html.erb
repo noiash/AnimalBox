@@ -1,99 +1,97 @@
-<div class="containeer">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="text-center pt-5 pb-3">新規会員登録</h2>
+<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="containeer">
+    <div class="card-container">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4 mt-1">新規会員登録</h2>
+        <hr>
+        <form>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-paw"></i>
+                </span>
+              </div>
+              <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'お名前' %>
+            </div><!-- input-group.// -->
+          </div><!-- form-group.// -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-paw"></i>
+                </span>
+              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'メールアドレス' %>
+            </div><!-- input-group.// -->
+          </div><!-- form-group.// -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-paw"></i>
+                </span>
+              </div>
+              <% if @minimum_password_length %>
+                <em><% @minimum_password_length %></em>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'パスワード' %>
+            </div><!-- input-group.// -->
+          </div><!-- form-group.// -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-paw"></i>
+                </span>
+              </div>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'パスワード(確認用)' %>
+            </div><!-- input-group.// -->
+          </div><!-- form-group.// -->
+
+
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="Email" class="form-label">性別</label></p>
+        </div>
+        <div class="col-md-7">
+          <p class="text-center">
+            <span class="mr-5">
+              <%= f.label :man %>
+              <%= f.radio_button :sex, :man %>
+            </span>
+            <%= f.label :woman %>
+            <%= f.radio_button :sex, :woman %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="Email" class="form-label">プロフィール画像</label></p>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center"><%= f.file_field :profile_image, class: ''%></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <p class="text-right mr-4"><label for="Email" class="form-label">紹介文</label></p>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center"><%= f.text_area :introduction, class: 'form-control' %></p>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'btn btn-outline-secondary btn-block' %>
+      </div>
+    </form>
+      
+      </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-12 pt-3">
-  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-
-    <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Name" class="form-label">お名前</label></p>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center"><%= f.text_field :name, autofocus: true, class: 'form-control' %></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Email" class="form-label">メールアドレス</label></p>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %></p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Password" class="form-label">パスワード</label></p>
-      <% if @minimum_password_length %>
-        <em><% @minimum_password_length %></em>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center"><%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Email" class="form-label">パスワード(確認用)</label></p>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Email" class="form-label">性別</label></p>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center">
-        <span class="mr-5">
-          <%= f.label :man %>
-          <%= f.radio_button :sex, :man %>
-        </span>
-        <%= f.label :woman %>
-        <%= f.radio_button :sex, :woman %>
-        </p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Email" class="form-label">プロフィール画像</label></p>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center"><%= f.file_field :profile_image, class: ''%></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Email" class="form-label">紹介文</label></p>
-    </div>
-    <div class="col-md-4">
-      <p class="text-center"><%= f.text_area :introduction, class: 'form-control' %></p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-5">
-    </div>
-    <div class="col-4">
-      <p class="text-right"><%= f.submit "Sign up", class: 'btn btn-primary' %></p>
-    </div>
-  </div>
-
-    <% end %>
-    </div>
-  </div>
-</div>
+<% end %>
