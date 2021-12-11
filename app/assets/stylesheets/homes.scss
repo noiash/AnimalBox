@@ -1,20 +1,37 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/nicomoji');
+
+.image1 {
+  background-image: image-url("image1.jpg");
+}
+.image2 {
+  background-image: image-url("image2.jpg");
+}
+.image3 {
+  background-image: image-url("image3.jpg");
+}
+.image4 {
+  background-image: image-url("image4.jpg");
+}
+.image5 {
+  background-image: image-url("image5.jpg");
+}
+
+#container{
+  height: 700px;
+  position: relative;
+}
 
 .container {
   height: 100%;
 }
 
-.giallo {
-  color: #FFD54F;
-}
 h1 {
   font-family: 'Raleway', sans-serif;
   font-size: 2.0rem;
-}
-.totem {
-  color: #2196F3;
 }
 
 h3 {
@@ -30,4 +47,22 @@ h3 {
 
 .main-text {
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.top-heading {
+  color: #e3dac5;
+  position: absolute;
+  top: 460px;
+  right: 200px;
+  z-index: 9999;
+  font-family: 'Sacramento', cursive;
+  font-size: 200px;
+}
+
+.about-heading {
+  font-family: 'Sacramento', cursive;
+}
+
+.about-text {
+  font-family: "Nico Moji";
 }
