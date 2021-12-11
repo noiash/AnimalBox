@@ -1,8 +1,8 @@
 <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="containeer">
-    <div class="card-container">
-      <div class="card-body">
+  <div class="container">
+    <div class="card-container top-card">
+      <div class="card-body box-card">
         <h2 class="card-title text-center mb-4 mt-1">新規会員登録</h2>
         <hr>
         <form>
@@ -90,7 +90,7 @@
         <%= f.submit "Sign up", class: 'btn btn-outline-secondary btn-block' %>
       </div>
     </form>
-      
+
       </div>
     </div>
   </div>

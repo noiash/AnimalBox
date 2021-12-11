@@ -1,14 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <h1 class="text-center mb-5">アニマルランキング一覧</h1>
+      <h1 class="text-center mb-5 heading vote-title">アニマルランキング一覧</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <p class="text-center mb-5 vote-text">動物に関するもののランキングに投票できたり、自分でランキングを<br>
+      作ることができます！あなたの気になるランキングはありますか？</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-8">
       <div class="text-right mr-5">
-        <h4 class="">動物に関するランキングを作ることができます→→→</h4>
+        <h4 class="">こちらのボタンからランキング作れます→→→<br></h4>
       </div>
     </div>
     <div class="col-4">
@@ -20,13 +27,18 @@
 
 
     <% @votes.each do |vote| %>
-      <div class="card border-dark mb-3 ml-5" style="max-width: 50rem;">
-        <%= link_to vote_path(vote), class: 'card-body text-dark' do %>
+      <div class="card border mb-3 ml-5 justify-content-center" style="max-width: 50rem;">
+        <%= link_to vote_path(vote), class: 'card-body text-dark items' do %>
         <div class="row">
-          <div class="col-md-12">
-            <p><%= vote.created_at.strftime('%Y/%m/%d') %></p>
-            <h5 class="card-title"><%= vote.title %></h5>
-            <p class="card-text"><%= vote.content %></p>
+          <div class="col-md-6">
+            <p class="text-right">ランキング作成日時</p>
+            <p class="text-right">タイトル</p>
+            <p class="text-right">内容</p>
+          </div>
+          <div class="col-md-6">
+            <p class="text-center"><%= vote.created_at.strftime('%Y/%m/%d') %></p>
+            <h5 class="card-title text-center"><%= vote.title %></h5>
+            <p class="card-text text-center"><%= vote.content %></p>
           </div>
         </div>
         <% end %>

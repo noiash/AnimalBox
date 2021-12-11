@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <h1 class="text-center mb-5"><%= @vote.title %></h1>
+      <h1 class="text-center mb-5 heading vote-title"><%= @vote.title %></h1>
     </div>
   </div>
 
@@ -9,14 +9,14 @@
   <div class="row">
     <div class="col-md-3">
     <h4 class="pb-3">こちらの項目から投票してください↓</h4>
-    <p>※投票はおひとり様一回のみです。</p>
+    <p class="vote-warning">※投票はおひとり様一回のみです。</p>
     <ul>
       <% @vote.vote_items.each do |vi| %>
         <li>
           <%= link_to vote_vote_path(vote_id: @vote, vote_item_id: vi.id), method: :post do %>
             <p><%= vi.item %></p>
           <% end %>
-          <p><%= vi.vote_answers.count %>票入っています！</p>
+          <p><span class="count mr-2"><%= vi.vote_answers.count %></span>票入っています！</p>
         </li>
       <% end %>
     </div>

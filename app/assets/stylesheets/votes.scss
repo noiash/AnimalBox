@@ -1,3 +1,48 @@
 // Place all the styles related to the votes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.vote-title {
+  position: relative;
+  color: #8B4513;
+  text-shadow: 0 0 5px white;
+  padding: 0.3em 0.5em;
+  background: -webkit-repeating-linear-gradient(-45deg, #f8e39f, #f8e39f 3px, #fff 3px, #fff 7px);
+  background: repeating-linear-gradient(-45deg, #f8e39f, #f8e39f 3px, #fff 3px, #fff 7px);
+}
+
+.vote-title:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 30px;
+  border: 15px solid transparent;
+  border-top: 15px solid #f8e39f;
+  width: 0;
+  height: 0;
+}
+
+.vote-text {
+  padding: .5em .75em;
+  background-color: #FFFFDD;
+  border: 3px solid #EEEEEE;
+  border-radius: 20px;
+  color: #A0522D;
+}
+
+.items {
+  background-color: #D2B48C;
+}
+
+.vote-warning {
+  padding: 1rem 2rem;
+  border-top: 3px dashed #333;
+  border-bottom: 3px dashed #333;
+  font-size: 5px;
+  color: #FF0000;
+}
+
+.count {
+  color: #B8860B;
+  font-size: 30px;
+}
