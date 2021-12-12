@@ -32,8 +32,9 @@
 ペットの可愛い瞬間や面白い瞬間を投稿して共有できる。
 
 ## 設計書
+https://docs.google.com/spreadsheets/d/1iQbEp4VYgAWs2sM6liYGcv2dfXi-Dg4uzmgFOVObH7s/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1PQl_Ry6vp6yjQ8fGKXHOayC7O94zwiyW/edit?usp=sharing&ouid=109651586888523714336&rtpof=true&sd=true
 
-...
 
 ## チャレンジ要素一覧
 
