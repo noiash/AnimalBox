@@ -13,7 +13,7 @@ class PetsController < ApplicationController
     @pet = Pet.new(pet_params)
     @pet.user_id = current_user.id
     @pet.save
-    redirect_to pets_path
+    redirect_to pet_path(@pet.id)
   end
 
   def edit
