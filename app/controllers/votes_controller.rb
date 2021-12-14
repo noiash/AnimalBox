@@ -23,8 +23,8 @@ class VotesController < ApplicationController
 
   def show
     @vote = Vote.find(params[:id])
-    vote_item_ids = VoteItem.where(vote_id: params[:id]).pluck(:id)
-    @vote_answers = VoteAnswer.where(vote_item_id: vote_item_ids)
+    @vote_answers = @vote.vote_items.includes(:vote_answers).map { |vote_item|
+    [vote_item.item,vote_item.vote_answers.count] }
   end
 
 
