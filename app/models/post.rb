@@ -32,5 +32,13 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :introduction, presence: true
+  validate :required_either_image_id_or_video_id
 
+  private
+
+    def required_either_image_id_or_video_id
+      return if image_id.present? ^ video_id.present?
+
+      errors.add(:base, '画像または動画を選択してください')
+    end
 end
