@@ -35,12 +35,11 @@
 
     <div class="row">
       <div class="col-md-5">
-        <p class="text-right mr-4"><label for="Item" class="form-label">選択肢</label></p>
+        <p class="text-right mr-4"><label for="Item" class="form-label">選択項目</label></p>
       </div>
       <div class="col-md-4">
         <p>※項目は必ず２個以上入れてください。</p>
         <%= button_tag '追加', type: 'button', id: 'add_item' %>
-        <%= button_tag '削除', type: 'button', id: 'delete_item' %>
 
         <div id="items">
           <%= text_field_tag "vote[items][]" %><br></div>
