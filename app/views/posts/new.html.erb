@@ -18,10 +18,13 @@
 
   <div class="row">
     <div class="col-md-5">
-      <p class="text-right mr-4"><label for="ImageVideo" class="form-label">画像または動画</label></p>
+      <p class="text-right mr-4"><label for="Image" class="form-label">画像→</label></p>
+      <p class="text-right mr-4 new-text">↑どちらかを選択して下さい↓</p>
+      <p class="text-right mr-4"><label for="Video" class="form-label">動画→</label></p>
     </div>
     <div class="col-md-4">
-      <p class="text-center"><%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %><%= f.file_field :video_id, :accept => 'video/*' %></p>
+      <p class="text-center"><%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %></p>
+      <p class="text-center mt-5"><%= f.file_field :video_id, :accept => 'video/*' %></p>
     </div>
   </div>
 
@@ -49,7 +52,7 @@
       <p class="text-right mr-4"><label for="Tag" class="form-label">タグ</label></p>
     </div>
   <div class="col-md-4">
-      <p class="text-center"><%= f.text_field :tag_name, autofocus: true, class: 'form-control' %></p>
+      <p class="text-center"><%= f.text_field :tag_name, autofocus: true, class: 'form-control', placeholder: '半角・全角スペースを入れるとタグをいくつかつけられます。' %></p>
     </div>
   </div>
 
