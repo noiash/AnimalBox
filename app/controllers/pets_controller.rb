@@ -18,7 +18,7 @@ class PetsController < ApplicationController
 
   def edit
     @pet = Pet.find(params[:id])
-    if @user != current_user
+    if @pet.user_id != current_user.id
       redirect_to user_path(current_user)
     end
   end
