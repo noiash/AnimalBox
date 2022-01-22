@@ -1,4 +1,4 @@
-# あにまるぼっくす
+# AnimalBox
 
 ## サイト概要
 
@@ -42,7 +42,7 @@ https://docs.google.com/spreadsheets/d/1jIxtKpzd2V7QFHPfYAo_ckHgiFRTLhrTrXXX3pAk
 
 ## 開発環境
 
-- OS：Linux(CentOS)
+- OS：Linux(Amazon linux2)
 - 言語：HTML,CSS,JavaScript,Ruby
 - フレームワーク：Ruby on Rails
 - JS ライブラリ：jQuery
