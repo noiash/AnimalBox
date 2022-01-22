@@ -53,7 +53,7 @@ h3 {
   color: #e3dac5;
   position: absolute;
   top: 460px;
-  right: 200px;
+  right: 315px;
   z-index: 9999;
   font-family: 'Sacramento', cursive;
   font-size: 200px;
@@ -65,4 +65,12 @@ h3 {
 
 .about-text {
   font-family: "Nico Moji";
+}
+
+@media screen and (max-width: 800px) {
+  .top-heading {
+    font-size: 30px;
+    top: 525px;
+    left: 130px;
+  }
 }
