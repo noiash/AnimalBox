@@ -1,4 +1,4 @@
-<div class="containeer">
+<div class="container">
   <div class="row">
     <div class="col-md-12">
       <h2 class="text-center pt-5 pb-3">新規投稿</h2>
@@ -18,13 +18,10 @@
 
   <div class="row">
     <div class="col-md-5">
-      <p class="text-right mr-4"><label for="Image" class="form-label">画像→</label></p>
-      <p class="text-right mr-4 new-text">↑どちらかを選択して下さい↓</p>
-      <p class="text-right mr-4"><label for="Video" class="form-label">動画→</label></p>
     </div>
     <div class="col-md-4">
-      <p class="text-center"><%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %></p>
-      <p class="text-center mt-5"><%= f.file_field :video_id, :accept => 'video/*' %></p>
+      <p class="text-center">画像<%= f.file_field :image_id, accept: 'image/jpeg, image/gif, image/png' %></p>
+      <p class="text-center mt-5">動画<%= f.file_field :video_id, :accept => 'video/*' %></p>
     </div>
   </div>
 
