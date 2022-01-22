@@ -14,11 +14,13 @@
 .mb8p {
   margin-bottom: 8px !important;
 }
+
 .bgPdg0 {
   background: #fff none repeat scroll 0 0;
   padding: 16px;
   margin: 0 0 32px 0;
 }
+
 .profile {
   border-bottom: 1px solid #ece2db;
   margin: 0 0 8px;
@@ -26,6 +28,7 @@
   display: table;
   width: 100%;
 }
+
 .profile dt {
   color: #69a5a4;
   display: table-cell;
@@ -58,3 +61,14 @@
   color: #CD853F;
 }
 
+.pet-icon {
+  
+}
+
+@media screen and (max-width: 600px) {
+  .user-section {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
